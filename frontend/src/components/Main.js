@@ -4,70 +4,70 @@ import Index from "../pages/Index";
 import Show from "../pages/Show";
 
 function Main(props) {
-  const [people, setPeople] = useState(null);
+  const [cheese, setCheese] = useState(null);
 
-  const URL = "https://cheesepenguin.herokuapp.com/";
+  const URL = "https://cheesepenguin.herokuapp.com/cheese/";
 
-  const getPeople = async () => {
+  const getCheese = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    setPeople(data);
+    setCheese(data);
   };
 
-  // function that will later be passed data from our new/create form and make the post request to create a new person
-  const createPeople = async (person) => {
+  // function that will later be passed data from our new/create form and make the post request to create a new cheeseon
+  const createCheese = async (cheeseon) => {
     // make the post request to our API
     await fetch(URL, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(person)
+        body: JSON.stringify(cheeseon)
     })
 
-    // get updated list of people
-    getPeople()
+    // get updated list of Cheese
+    getCheese()
 }
 
-  // function to update a person
-  const updatePeople = async (person, id) => {
+  // function to update a cheeseon
+  const updateCheese = async (cheeseon, id) => {
     // make the put request
     await fetch(URL + id, {
         method: "put",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(person)
+        body: JSON.stringify(cheeseon)
     })
-    // update the list of people
-    getPeople()
+    // update the list of Cheese
+    getCheese()
 }
 
-// create function to delete a person
-const deletePeople = async (id) => {
+// create function to delete a cheeseon
+const deleteCheese = async (id) => {
     // make the delete request
     await fetch(URL + id, {
         method: "delete"
     })
-    // update the list of people
-    getPeople()
+    // update the list of Cheese
+    getCheese()
 }
 
-  useEffect(() => getPeople(), []);
+  useEffect(() => getCheese(), []);
 
   return (
     <main>
       <Routes>
         <Route path="/" element={
-          <Index people={people} 
-            createPeople={createPeople}
+          <Index cheese={cheese} 
+            createCheese={createCheese}
           />
         }/>
-        <Route path="/people/:id" element={
+        <Route path="/cheese/:id" element={
           <Show 
-          people={people} 
-          updatePeople={updatePeople} 
-          deletePeople={deletePeople}
+          cheese={cheese} 
+          updateCheese={updateCheese} 
+          deleteCheese={deleteCheese}
           />
         }/>
       </Routes>

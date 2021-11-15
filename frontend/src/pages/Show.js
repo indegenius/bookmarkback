@@ -5,10 +5,10 @@ function Show(props) {
   const params = useParams()
   const navigate = useNavigate()
   const id = params.id;
-  const people = props.people;
-  const person = people.find((p) => p._id === id);
+  const cheese = props.cheese;
+  const cheeseon = cheese.find((p) => p._id === id);
 
-  const [editForm, setEditForm] = useState(person);
+  const [editForm, setEditForm] = useState(cheeseon);
 
   // handleChange function for form
   const handleChange = (event) => {
@@ -17,21 +17,21 @@ function Show(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.updatePeople(editForm);
+    props.updateCheese(editForm);
     navigate("/");
   };
 
-  const removePerson = () => {
-    props.deletePeople(person._id);
+  const removeCheeseon = () => {
+    props.deleteCheese(cheeseon._id);
     navigate("/");
   };
 
   return (
-    <div className="person">
-      <h1>{person.name}</h1>
-      <h2>{person.title}</h2>
-      <img src={person.image} alt={person.name} />
-      <button id="delete" onClick={removePerson}>
+    <div className="cheeseon">
+      <h1>{cheeseon.name}</h1>
+      <h2>{cheeseon.countryOfOrigin}</h2>
+      <img src={cheeseon.image} alt={cheeseon.name} />
+      <button id="delete" onClick={removeCheeseon}>
         DELETE
       </button>
       <form onSubmit={handleSubmit}>
@@ -51,12 +51,12 @@ function Show(props) {
         />
         <input
           type="text"
-          value={editForm.title}
-          name="title"
-          placeholder="title"
+          value={editForm.countryOfOrigin}
+          name="countryOfOrigin"
+          placeholder="countryOfOrigin"
           onChange={handleChange}
         />
-        <input type="submit" value="Update Person" />
+        <input type="submit" value="Update Cheeseon" />
       </form>
     </div>
   );

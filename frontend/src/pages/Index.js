@@ -6,7 +6,7 @@ function Index(props) {
   const [newForm, setNewForm] = useState({
     name: "",
     image: "",
-    title: "",
+    countryOfOrigin: "",
   });
 
   // handleChange function for form
@@ -21,7 +21,7 @@ function Index(props) {
     setNewForm({
       name: "",
       image: "",
-      title: "",
+      countryOfOrigin: "",
     });
   };
 
@@ -33,7 +33,7 @@ function Index(props) {
           <h1>{person.name}</h1>
         </Link>
         <img src={person.image} alt={person.name} />
-        <h3>{person.title}</h3>
+        <h3>{person.countryOfOrigin}</h3>
       </div>
     ));
   };
@@ -46,7 +46,7 @@ function Index(props) {
                     <h1>{person.name}</h1>
                 </Link>
                 <img src={person.image} alt={person.name}/>
-                <h3>{person.title}</h3>
+                <h3>{person.countryOfOrigin}</h3>
             </div>
         })
     } else {
@@ -72,9 +72,9 @@ function Index(props) {
         />
         <input
           type="text"
-          value={newForm.title}
-          name="title"
-          placeholder="title"
+          value={newForm.countryOfOrigin}
+          name="countryOfOrigin"
+          placeholder="countryOfOrigin"
           onChange={handleChange}
         />
         <input type="submit" value="Create Person" />
