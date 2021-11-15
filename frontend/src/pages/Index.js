@@ -4,9 +4,9 @@ import {Link} from "react-router-dom"
 function Index(props) {
   // state to hold formData
   const [newForm, setNewForm] = useState({
-    name: "",
-    image: "",
-    countryOfOrigin: "",
+    title: "",
+    url: "",
+    //countryOfOrigin: "",
   });
 
   // handleChange function for form
@@ -17,36 +17,36 @@ function Index(props) {
   // handle submit function for form
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.createPeople(newForm);
+    props.createCheese(newForm);
     setNewForm({
-      name: "",
-      image: "",
-      countryOfOrigin: "",
+      title: "",
+      url: "",
+      //countryOfOrigin: "",
     });
   };
 
   // loaded function
   const loaded = () => {
-    return props.people.map((person) => (
-      <div key={person._id} className="person">
-        <Link to={`/people/${person._id}`}>
-          <h1>{person.name}</h1>
+    return props.cheese.map((cheeseon) => (
+      <div key={cheeseon._id} className="cheeseon">
+        <Link to={`/cheese/${cheeseon._id}`}>
+          <h1>{cheeseon.title}</h1>
         </Link>
-        <img src={person.image} alt={person.name} />
-        <h3>{person.countryOfOrigin}</h3>
+        <img src={cheeseon.url} alt={cheeseon.title} />
+        <h3>{cheeseon.countryOfOrigin}</h3>
       </div>
     ));
   };
 
   const loading = () => {
-    if (props.people){
-        return props.people.map((person) => {
-            return <div key={person._id} className="person">
-                <Link to={`/people/${person._id}`}>
-                    <h1>{person.name}</h1>
+    if (props.cheese){
+        return props.cheese.map((cheeseon) => {
+            return <div key={cheeseon._id} className="cheeseon">
+                <Link to={`/cheese/${cheeseon._id}`}>
+                    <h1>{cheeseon.title}</h1>
                 </Link>
-                <img src={person.image} alt={person.name}/>
-                <h3>{person.countryOfOrigin}</h3>
+                <img src={cheeseon.url} alt={cheeseon.title}/>
+                <h3>{cheeseon.countryOfOrigin}</h3>
             </div>
         })
     } else {
@@ -58,28 +58,22 @@ function Index(props) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={newForm.name}
-          name="name"
-          placeholder="name"
+          value={newForm.title}
+          name="title"
+          placeholder="title"
           onChange={handleChange}
         />
         <input
           type="text"
-          value={newForm.image}
-          name="image"
-          placeholder="image URL"
+          value={newForm.url}
+          name="url"
+          placeholder="url URL"
           onChange={handleChange}
         />
-        <input
-          type="text"
-          value={newForm.countryOfOrigin}
-          name="countryOfOrigin"
-          placeholder="countryOfOrigin"
-          onChange={handleChange}
-        />
-        <input type="submit" value="Create Person" />
+        
+        <input type="submit" value="Create Bookmark" />
       </form>
-      {props.people ? loaded() : loading()}
+      {props.cheese ? loaded() : loading()}
     </section>
   );
 }

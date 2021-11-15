@@ -30,7 +30,7 @@ function Show(props) {
     <div className="cheeseon">
       <h1>{cheeseon.name}</h1>
       <h2>{cheeseon.countryOfOrigin}</h2>
-      <img src={cheeseon.image} alt={cheeseon.name} />
+      <img src={cheeseon.url} alt={cheeseon.name} />
       <button id="delete" onClick={removeCheeseon}>
         DELETE
       </button>
@@ -44,9 +44,9 @@ function Show(props) {
         />
         <input
           type="text"
-          value={editForm.image}
-          name="image"
-          placeholder="image URL"
+          value={editForm.url}
+          name="url"
+          placeholder="url URL"
           onChange={handleChange}
         />
         <input
