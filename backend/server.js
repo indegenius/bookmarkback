@@ -33,13 +33,13 @@ mongoose.connection
 ///////////////////////////////
 // MODELS
 ////////////////////////////////
-const PeopleSchema = new mongoose.Schema({
-  name: String,
-  image: String,
+const BookmarkSchema = new mongoose.Schema({
   title: String,
+  url: String,
+  //countryOfOrigin: String,
 });
 
-const People = mongoose.model("People", PeopleSchema);
+const Bookmark = mongoose.model("Bookmark", BookmarkSchema);
 
 ///////////////////////////////
 // MiddleWare
@@ -56,34 +56,34 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-// PEOPLE INDEX ROUTE
-app.get("/people", async (req, res) => {
+// Bookmark INDEX ROUTE
+app.get("/bookmark", async (req, res) => {
   try {
-    // send all people
-    res.json(await People.find({}));
+    // send all bookmark
+    res.json(await Bookmark.find({}));
   } catch (error) {
     //send error
     res.status(400).json(error);
   }
 });
 
-// People create route
-// post request to /people, uses request body to make new people
-app.post("/people", async (req, res) => {
+// Bookmark create route
+// post request to /bookmark, uses request body to make new bookmark
+app.post("/bookmark", async (req, res) => {
   try {
-    // screate a new person
-    res.json(await People.create(req.body));
+    // screate a new bookmark
+    res.json(await Bookmark.create(req.body));
   } catch (error) {
     res.status(400).json({ error });
   }
 });
 
-// PEOPLE Update ROUTE
-app.put("/people/:id", async (req, res) => {
+// Bookmark Update ROUTE
+app.put("/bookmark/:id", async (req, res) => {
   try {
-    // send all people
+    // send all bookmark
     res.json(
-      await People.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      await Bookmark.findByIdAndUpdate(req.params.id, req.body, { new: true })
     );
   } catch (error) {
     //send error
@@ -91,11 +91,11 @@ app.put("/people/:id", async (req, res) => {
   }
 });
 
-// PEOPLE CDestroy ROUTE
-app.delete("/people/:id", async (req, res) => {
+// Bookmark CDestroy ROUTE
+app.delete("/bookmark/:id", async (req, res) => {
   try {
-    // send all people
-    res.json(await People.findByIdAndRemove(req.params.id));
+    // send all bookmark
+    res.json(await Bookmark.findByIdAndRemove(req.params.id));
   } catch (error) {
     //send error
     res.status(400).json(error);
